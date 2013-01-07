@@ -9,7 +9,7 @@ setup
 
 requires python >= 2.6 && python-dev:
 
-    apt-get install python-dev
+    apt-get install python python-dev
 
 
 create a virtualenv && activate it:
@@ -19,15 +19,16 @@ create a virtualenv && activate it:
 
 install django into a virtualenv:
 
-    pip install django==1.4.3;
+    pip install django==1.4.3
 
 
-to show available versions:
+to show available versions of django:
 
     pip install yolk; yolk -V django
 
 
 create a db if none exists:
+
     python manage.py syncdb
 
 
