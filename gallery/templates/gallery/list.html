@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Upload/Pregled Slika</title>   
+</head>
+<body>
+    
+    <h1><center>Upload Slika</center></h1>
+    
+    <center>
+    <!-- image upload form -->
+    <form action="{% url list %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.non_field_errors }}</p>
+        
+        <table>{{ form.as_table }}</table>
+        
+        <p><input type="submit" value="Pošalji sliku" /></p>
+    </form>
+    </center>
+    
+    <!-- List of uploaded images -->
+    <h1 style="text-align:center">Pregled Slika</h1>
+    {% if image_list %}
+    <table style="margin: 0 auto; border-collapse: separate; border-spacing: 3em;">
+        {% for image in image_list %}
+        {% if forloop.counter0|divisibleby:4 %}<tr>{% endif %}
+        <td>
+            <a href="{% url image image.pk %}">
+                <image src="{{ image.original.url }}" width="100" height="100">
+            </a>
+            <div style="text-align: center">{{ image.description }}</div>
+        </td>
+        {% if forloop.counter|divisibleby:4 or forloop.last %}</tr>{% endif %}
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No images.</p>
+    {% endif %}
+    
+    <!-- paging -->
+    <div class="pagination" style="text-align: center">
+        <span class="step-links">
+            {% if image_list.has_previous %}
+                <a href="?page={{ image_list.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ image_list.number }} of {{ image_list.paginator.num_pages }}.
+            </span>
+
+            {% if image_list.has_next %}
+                <a href="?page={{ image_list.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+    
+</body>
+</html>

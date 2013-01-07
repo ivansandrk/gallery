@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pregled Slike</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}gallery/js/comment.js"></script>
+</head>
+
+<body>
+    
+    <h1 style="text-align: center">Pregled Slike</h1>
+    
+    <!-- image & description-->
+    <table style="margin: 0 auto; border-spacing: 50px 20px;">
+        <tr>
+            <td><img src="{{ image.original.url }}"></td>
+            <td>{{ image.description }}</td>
+        </tr>
+    </table>
+    
+    <!-- comments -->
+    <table id="comments" style="margin: 0 auto; border-collapse: separate; border-spacing: 1em; width: 800px; text-align: center;">
+    {% if comments %}
+        {% for comment in comments %}
+        <tr><td>{{ comment.text }}</td></tr>
+        {% endfor %}
+    {% endif %}
+    </table>
+    
+    <!-- add comment form -->
+    
+    <form action="{% url image image.pk %}" method="post" id="commentform" style="margin: 0 auto;">
+        {% csrf_token %}
+        
+        <table style="margin: 0 auto; border-spacing: 50px 10px;">
+            <tr>
+                <td>
+                    {{ form.non_field_errors }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.text }} {{ form.image }}
+                </td>
+                <td>
+                    <input type="submit" value="Pošalji komentar" id="commentbutton"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+        
+</body>
+</html>
