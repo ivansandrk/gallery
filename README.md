@@ -7,7 +7,7 @@ simple django application for uploading images and adding comments
 setup
 =======
 
-requires python >= 2.6 && python-dev:
+requires python (>= 2.6) && python-dev. on debian/ubuntu install them using:
 
     apt-get install python python-dev
 
