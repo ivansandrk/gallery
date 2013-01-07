@@ -7,14 +7,30 @@ simple django application for uploading images and adding comments
 setup
 =======
 
-apt-get install python-dev
+requires python >= 2.6 && python-dev:
 
-virtualenv --no-site-packages project; cd project; source bin/activate; (activate virtualenv)
-
-pip install yolk; yolk -V django (show available versions of package); pip install django==1.4.3;
+    apt-get install python-dev
 
 
+create a virtualenv && activate it:
 
-python manage.py syncdb; (create a database if there is none)
+    virtualenv --no-site-packages project; cd project; source bin/activate
 
-python manage.py runserver; (run the server!)
+
+install django into a virtualenv:
+
+    pip install django==1.4.3;
+
+
+to show available versions:
+
+    pip install yolk; yolk -V django
+
+
+create a db if none exists:
+    python manage.py syncdb
+
+
+run the server!:
+
+    python manage.py runserver
