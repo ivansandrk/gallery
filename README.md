@@ -1,37 +1,45 @@
-gallery
+Gallery
 =======
 
-simple django application for uploading images and adding comments
+Simple django application for uploading images and adding comments.
 
 
-setup
-=======
+## Quick Guide
 
-requires python (>= 2.6) && python-dev. on debian/ubuntu install them using:
-
-    apt-get install python python-dev
-
-
-create a virtualenv && activate it:
+Use `virtualenv` for a clean environment:
 
     virtualenv --no-site-packages project; cd project; source bin/activate
 
 
-install django into a virtualenv:
+Install `django` & `pil` into the `virtualenv`:
 
-    pip install django==1.4.3
+    pip install django==1.4.3 pil
 
 
-to show available versions of django:
+Show available versions of `django`:
 
     pip install yolk; yolk -V django
 
 
-create a db if none exists:
+Clone the repository locally:
+
+    git clone https://github.com/johndoevodka/gallery; cd gallery
+
+
+Create a db if none exists:
 
     python manage.py syncdb
 
 
-run the server!:
+Run the server:
 
     python manage.py runserver
+
+
+## Requirements
+  *  `python` (>= 2.6)
+  *  `python-dev` 
+  *  `virtualenv` 
+  *  `python-pip` 
+  *  `django` (1.4)
+  *  `pil`
